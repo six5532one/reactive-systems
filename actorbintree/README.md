@@ -7,12 +7,13 @@ Motivation
 ===========
 An actor-based solution can execute concurrent operations fully asynchronously and in parallel. For example, suppose there are concurrent requests to insert 40 into the tree below and to find out whether it contains -10. Two messages (one for each request) will be sent to the actor that represents the root of the tree. Suppose the actor first queues the message to insert 40, then the message to look up -10. When it processes the message to insert 40, it forwards that message to the actor that represents its right child (the tree node containing 30). Then, it processes the message to look up -10, forwarding that message to the actor that represents its left child (the tree node containing -20). The actor that represents the right child and the actor that represents the left child process their message independently of each other, enabling the two operations on the tree to execute in parallel. Since the clients that requested these operations did not need to wait for a lock and they receive a message with the response, their requests are handled "fully asynchronously".
 
+```
       0
     /   \
   -20   30
   /  \
 -50  -10
-
+```
 
 
 Interface
